@@ -96,7 +96,7 @@ if (scrollIndicator) {
 
 // Scroll Progress Bar Logic
 window.addEventListener('scroll', () => {
-  const scrollPx = document.documentElement.scrollTop;
+  const scrollPx = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
   const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrolled = (scrollPx / winHeightPx) * 100;
   const progressBar = document.querySelector('.scroll-progress-bar');
