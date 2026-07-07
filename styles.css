@@ -1024,7 +1024,7 @@ h3 {
 /* --- Custom Text Tooltips --- */
 .custom-tooltip {
   position: relative;
-  cursor: help;
+  cursor: default;
   display: inline-block;
 }
 
