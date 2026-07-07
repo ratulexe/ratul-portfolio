@@ -52,3 +52,44 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 
 highlightCurrentSection();
+
+
+// Scroll Reveal Animations
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealCallback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+      observer.unobserve(entry.target); // Reveal only once
+    }
+  });
+};
+
+const revealOptions = {
+  root: null,
+  threshold: 0.15,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+revealElements.forEach((el) => {
+  revealObserver.observe(el);
+});
+
+
+// Fade out scroll indicator on scroll
+const scrollIndicator = document.querySelector(".scroll-indicator");
+if (scrollIndicator) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 100) {
+      scrollIndicator.style.opacity = "0";
+      scrollIndicator.style.pointerEvents = "none";
+    } else {
+      scrollIndicator.style.opacity = "1";
+      scrollIndicator.style.pointerEvents = "auto";
+    }
+  }, { passive: true });
+}
+
