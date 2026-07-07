@@ -56,6 +56,24 @@ a {
   font-size: 4.15rem;
   font-weight: 400;
   line-height: 1;
+  display: inline-block;
+  position: relative;
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  right: -20px;
+  width: 120%;
+  background: var(--background);
+  animation: typing-cover 1s ease-in-out forwards;
+}
+
+@keyframes typing-cover {
+  0% { width: 120%; }
+  100% { width: 0%; }
 }
 
 .nav-links {
@@ -156,6 +174,24 @@ h1 {
   font-size: clamp(0.88rem, 1.8vw, 1.1rem);
   font-weight: 600;
   margin-top: 16px;
+  overflow: hidden;
+  border-right: 0.15em solid var(--accent);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  width: 18.5ch;
+  animation: 
+    typing 0.9s steps(19, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 18.5ch; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent); }
 }
 
 h2 {
@@ -173,6 +209,23 @@ h3 {
   font-size: 1.5rem;
   margin-top: 24px;
   max-width: 760px;
+}
+
+.hero-text {
+  opacity: 0;
+  animation: text-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.25s; /* Stagger after the logo and name animation */
+}
+
+@keyframes text-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-actions {
