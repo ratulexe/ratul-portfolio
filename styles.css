@@ -621,7 +621,9 @@ h3 {
   min-height: 260px;
 }
 
-.project-card a {
+.project-links {
+  display: flex;
+  gap: 12px;
   margin-top: 22px;
 }
 
@@ -635,6 +637,52 @@ h3 {
   justify-content: center;
   transition: border-color 180ms ease, transform 180ms ease;
   width: 46px;
+  position: relative;
+}
+
+.project-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--text);
+  color: var(--background);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: 'Geist Mono', monospace;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+  margin-bottom: 8px;
+}
+
+.project-link::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--text) transparent transparent transparent;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+  margin-bottom: -2px;
+}
+
+.project-link:hover::after,
+.project-link:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .project-link:hover {
@@ -887,6 +935,7 @@ h3 {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 
 
