@@ -236,27 +236,30 @@ h3 {
 }
 
 .hero-stats {
-  border-top: 1px solid var(--line);
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 44px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 36px;
   max-width: 620px;
-  padding-top: 24px;
 }
 
-.hero-stats strong {
-  color: var(--text);
-  display: block;
-  font-size: 1.55rem;
-  line-height: 1;
-}
-
-.hero-stats span {
+.stat-badge {
+  background: var(--background);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--muted);
-  display: block;
-  font-size: 0.8rem;
-  margin-top: 8px;
+}
+
+.stat-badge strong {
+  color: var(--text);
+  font-size: 1.1rem;
 }
 
 .button {
@@ -278,13 +281,14 @@ h3 {
 }
 
 .primary-button {
-  background: var(--text);
+  background: var(--accent);
   color: var(--background);
+  border-color: var(--accent);
 }
 
 .primary-button:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--text);
+  border-color: var(--text);
 }
 
 .secondary-button:hover {
@@ -992,3 +996,63 @@ h3 {
 
 
 
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.resume-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* --- Custom Text Tooltips --- */
+.custom-tooltip {
+  position: relative;
+  cursor: help;
+  display: inline-block;
+}
+
+.custom-tooltip::after {
+  background: #ffffff;
+  border-radius: 6px;
+  color: #000000;
+  content: attr(data-tooltip);
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.75rem;
+  left: 50%;
+  opacity: 0;
+  padding: 8px 12px;
+  pointer-events: none;
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 8px;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  width: max-content;
+  white-space: nowrap;
+  text-align: center;
+  z-index: 9999;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.custom-tooltip:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

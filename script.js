@@ -57,11 +57,12 @@ highlightCurrentSection();
 // Scroll Reveal Animations
 const revealElements = document.querySelectorAll(".reveal");
 
-const revealCallback = (entries, observer) => {
+const revealCallback = (entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add("active");
-      observer.unobserve(entry.target); // Reveal only once
+    } else {
+      entry.target.classList.remove("active");
     }
   });
 };
@@ -93,3 +94,13 @@ if (scrollIndicator) {
   }, { passive: true });
 }
 
+// Scroll Progress Bar Logic
+window.addEventListener('scroll', () => {
+  const scrollPx = document.documentElement.scrollTop;
+  const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (scrollPx / winHeightPx) * 100;
+  const progressBar = document.querySelector('.scroll-progress-bar');
+  if(progressBar) {
+    progressBar.style.width = scrolled + '%';
+  }
+}, { passive: true });

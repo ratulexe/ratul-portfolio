@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="scroll-progress-bar"></div>
     <header class="site-header">
       <nav class="nav">
         <a class="logo" href="#home" aria-label="Go to home">Ratul Kole</a>
@@ -54,22 +55,19 @@
             Structures & Algorithms.
           </p>
           <div class="hero-actions">
-            <a class="button primary-button" href="#projects">View Projects</a>
-            <a class="button secondary-button" href="#contact">Contact Me</a>
+            <a class="button primary-button" href="#contact">Contact Me</a>
+            <a class="button secondary-button" href="#projects">View Projects</a>
           </div>
 
           <div class="hero-stats" aria-label="Profile highlights">
-            <div>
-              <strong>8.4</strong>
-              <span>Current CGPA</span>
+            <div class="stat-badge">
+              <strong>8.4</strong> CGPA
             </div>
-            <div>
-              <strong>6+</strong>
-              <span>Tech Skills</span>
+            <div class="stat-badge">
+              <strong>6+</strong> Tech Skills
             </div>
-            <div>
-              <strong>3</strong>
-              <span>Programming Languages</span>
+            <div class="stat-badge">
+              <strong>3</strong> Programming Languages
             </div>
           </div>
         </div>
@@ -163,7 +161,7 @@
                 <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
                 Anandanagar Ananda Chandra Roy High School
               </span>
-              <span title="West Bengal Council of Higher Secondary Education">
+              <span class="custom-tooltip" data-tooltip="West Bengal Council of Higher Secondary Education">
                 <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                 WBCHSE
               </span>
@@ -181,7 +179,7 @@
                 <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
                 Anandanagar Ananda Chandra Roy High School
               </span>
-              <span title="West Bengal Board of Secondary Education">
+              <span class="custom-tooltip" data-tooltip="West Bengal Board of Secondary Education">
                 <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                 WBBSE
               </span>
@@ -487,7 +485,13 @@
 
     <footer class="site-footer">
       <p>© <span id="currentYear"></span> Ratul Kole. Built with HTML, CSS, and JavaScript.</p>
-      <a href="#home">Back to top</a>
+      <div class="footer-links">
+        <a href="assets/resume.pdf" download="Ratul_Kole_Resume.pdf" class="resume-download-link" aria-label="Download Resume" title="Download Resume">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download Resume
+        </a>
+        <a href="#home">Back to top</a>
+      </div>
     </footer>
 
     <script src="script.js" defer></script>
