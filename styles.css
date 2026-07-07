@@ -9,7 +9,9 @@
   --shadow: 0 20px 60px rgba(17, 17, 17, 0.08);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -17,6 +19,9 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -24,6 +29,33 @@ body {
   color: var(--text);
   font-family: "Geist Mono", "Courier New", monospace;
   line-height: 1.6;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+section,
+header,
+footer,
+.nav,
+.section,
+.hero,
+.hero-content,
+.hero-visual,
+.skills-grid,
+.projects-grid,
+.timeline,
+.contact-grid,
+.hero-stats,
+.profile-lines {
+  max-width: 100%;
 }
 
 a {
@@ -66,13 +98,13 @@ a {
   top: -10px;
   bottom: -10px;
   right: -20px;
-  width: 120%;
+  width: calc(100% + 20px);
   background: var(--background);
   animation: typing-cover 1s ease-in-out forwards;
 }
 
 @keyframes typing-cover {
-  0% { width: 120%; }
+  0% { width: calc(100% + 20px); }
   100% { width: 0%; }
 }
 
@@ -414,6 +446,7 @@ h3 {
   gap: 5px;
   white-space: nowrap;
   flex-shrink: 0;
+  max-width: 100%;
 }
 
 .profile-meta span svg {
@@ -884,8 +917,8 @@ h3 {
   }
 
   .portrait-wrap img {
-    height: 124%;
-    width: 124%;
+    height: 100%;
+    width: 100%;
   }
 
   .site-footer {
@@ -1045,6 +1078,7 @@ h3 {
   transform: translate(-50%, 8px);
   transition: opacity 0.2s ease, transform 0.2s ease;
   width: max-content;
+  max-width: min(280px, calc(100vw - 32px));
   white-space: nowrap;
   text-align: center;
   z-index: 9999;
@@ -1059,9 +1093,14 @@ h3 {
 
 /* --- Mobile Overflow Fixes --- */
 @media (max-width: 860px) {
-  html,
-  body {
-    overflow-x: hidden;
-    width: 100%;
+  .custom-tooltip::after,
+  .project-link::after,
+  .project-link::before,
+  .skill-icon-item::after {
+    display: none;
+  }
+
+  .profile-meta span {
+    white-space: normal;
   }
 }
