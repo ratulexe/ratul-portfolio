@@ -95,12 +95,20 @@ if (scrollIndicator) {
 }
 
 // Scroll Progress Bar Logic
-window.addEventListener('scroll', () => {
-  const scrollPx = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
-  const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (scrollPx / winHeightPx) * 100;
-  const progressBar = document.querySelector('.scroll-progress-bar');
-  if(progressBar) {
-    progressBar.style.width = scrolled + '%';
-  }
-}, { passive: true });
+const progressBar = document.querySelector('.scroll-progress-bar');
+if (progressBar) {
+  let isScrolling = false;
+
+  window.addEventListener('scroll', () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        const scrollPx = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+        const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (scrollPx / winHeightPx) * 100;
+        progressBar.style.width = scrolled + '%';
+        isScrolling = false;
+      });
+      isScrolling = true;
+    }
+  }, { passive: true });
+}
