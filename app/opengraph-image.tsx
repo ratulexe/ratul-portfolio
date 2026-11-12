@@ -2,41 +2,26 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { profile } from "@/data/portfolio";
+import { loadDisplayFont } from "@/lib/displayFont";
 
 // The preview card shown when the site link is shared (LinkedIn, WhatsApp, X, Slack…).
 // Generated once at build time.
 
-export const alt = `${profile.name} — Full-stack developer portfolio`;
+export const alt = `${profile.name} — Web developer portfolio`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const INK = "#0a0a0a";
 const PAPER = "#f5f0e1";
 
-/** Loads Archivo Black from Google Fonts (TTF). Falls back to the default font on failure. */
-async function loadDisplayFont(text: string): Promise<ArrayBuffer | null> {
-  try {
-    const css = await (
-      await fetch(
-        `https://fonts.googleapis.com/css2?family=Archivo+Black&text=${encodeURIComponent(text)}`,
-      )
-    ).text();
-    const url = css.match(/src: url\((.+?)\) format\('(?:truetype|opentype)'\)/)?.[1];
-    if (!url) return null;
-    return await (await fetch(url)).arrayBuffer();
-  } catch {
-    return null;
-  }
-}
-
 export default async function Image() {
   const headline = profile.name.toUpperCase();
-  const tagline = "FULL-STACK DEV · NODE.JS · FIREBASE";
+  const tagline = "WEB DEVELOPER · NODE.JS · FIREBASE";
   const chips = ["B.TECH CSE · JIS UNIVERSITY", `NOW: ${profile.nowLearning.toUpperCase()}`];
 
   const [font, portrait] = await Promise.all([
-    loadDisplayFont(headline + tagline + chips.join("") + "OPEN TO INTERNSHIPS"),
-    readFile(join(process.cwd(), "public/assets/ratul-portrait-transparent.png")),
+    loadDisplayFont(headline + tagline + chips.join("") + "OPEN TO INTERNSHIPS</>"),
+    readFile(join(process.cwd(), "public/assets/ratul-cutout-2026.png")),
   ]);
   const portraitSrc = `data:image/png;base64,${portrait.toString("base64")}`;
   const display = font ? "Archivo Black" : "sans-serif";
@@ -105,26 +90,43 @@ export default async function Image() {
           </div>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            width: 380,
-            height: 380,
-            overflow: "hidden",
-            backgroundColor: "#3a5bff",
-            border: `6px solid ${INK}`,
-            boxShadow: `16px 16px 0 ${INK}`,
-            transform: "rotate(3deg)",
-          }}
-        >
+        {/* Same look as the hero: pink block with a hard shadow, cut-out portrait rising out of it */}
+        <div style={{ display: "flex", position: "relative", width: 400, height: 500 }}>
+          <div
+            style={{
+              position: "absolute",
+              left: 20,
+              bottom: 0,
+              width: 360,
+              height: 320,
+              backgroundColor: "#ff6fa8",
+              border: `6px solid ${INK}`,
+              boxShadow: `14px 14px 0 ${INK}`,
+            }}
+          />
           {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse needs a plain <img> */}
           <img
             src={portraitSrc}
             alt=""
-            width={440}
-            height={440}
-            style={{ marginLeft: -30, marginTop: -10, filter: "grayscale(1)" }}
+            width={266}
+            height={480}
+            style={{ position: "absolute", left: 67, bottom: 6, filter: "grayscale(1)" }}
           />
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 70,
+              display: "flex",
+              backgroundColor: "#ffd23f",
+              border: `5px solid ${INK}`,
+              boxShadow: `6px 6px 0 ${INK}`,
+              padding: "10px 16px",
+              fontSize: 34,
+            }}
+          >
+            {"</>"}
+          </div>
         </div>
       </div>
     ),

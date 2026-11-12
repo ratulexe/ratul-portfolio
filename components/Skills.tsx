@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { concepts, skillGroups, type SkillGroup } from "@/data/portfolio";
-import Reveal from "./Reveal";
+import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
 const card = "brutal-lift flex flex-col border-3 border-ink bg-card shadow-brutal";
@@ -10,7 +10,7 @@ function SkillCard({ group }: { group: SkillGroup }) {
   const box = group.large ? "size-17 sm:size-19" : "size-14.5";
   const img = group.large ? 48 : 36;
   return (
-    <article className={card}>
+    <article data-anim="slam" className={card}>
       <h3 className={`${cardTitle} ${group.headerClass}`}>{group.title}</h3>
       <ul
         aria-label={`${group.title} skills`}
@@ -46,14 +46,14 @@ function SkillCard({ group }: { group: SkillGroup }) {
 
 export default function Skills() {
   return (
-    <Reveal id="skills">
+    <Section id="skills">
       <SectionHeading eyebrow="Skills" title="My toolbox." />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((g) => (
           <SkillCard key={g.title} group={g} />
         ))}
 
-        <article className={card}>
+        <article data-anim="slam" className={card}>
           <h3 className={`${cardTitle} bg-coal text-sun`}>Core Concepts</h3>
           <ol className="grid grow content-center gap-3.5 p-6">
             {concepts.map((c, i) => (
@@ -73,6 +73,6 @@ export default function Skills() {
           </ol>
         </article>
       </div>
-    </Reveal>
+    </Section>
   );
 }

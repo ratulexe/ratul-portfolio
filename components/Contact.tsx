@@ -1,6 +1,6 @@
 import { contacts, type ContactLink } from "@/data/portfolio";
 import { CodeIcon, GitHubIcon, LinkedInIcon, MailIcon, XIcon } from "./icons";
-import Reveal from "./Reveal";
+import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
 const icons: Record<ContactLink["icon"], typeof MailIcon> = {
@@ -13,13 +13,13 @@ const icons: Record<ContactLink["icon"], typeof MailIcon> = {
 
 export default function Contact() {
   return (
-    <Reveal id="contact" className="pb-18">
+    <Section id="contact" className="pb-18">
       <SectionHeading eyebrow="Contact" title="Say hi." big />
       <ul className="flex flex-wrap gap-4.5">
         {contacts.map((c) => {
           const Icon = icons[c.icon];
           return (
-            <li key={c.label}>
+            <li key={c.label} data-anim="slam">
               <a
                 href={c.href}
                 aria-label={c.label}
@@ -33,6 +33,6 @@ export default function Contact() {
           );
         })}
       </ul>
-    </Reveal>
+    </Section>
   );
 }

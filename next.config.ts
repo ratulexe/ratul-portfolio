@@ -14,9 +14,10 @@ const nextConfig: NextConfig = {
   // Not a static export: on Vercel the home page is pre-rendered and then refreshed in
   // the background (ISR) so the live LeetCode/GitHub stats update without redeploying.
   allowedDevOrigins: lanAddresses,
+  // Images go through Next.js image optimisation on Vercel: resized per screen and
+  // served as AVIF/WebP. (SVGs are served as-is automatically.)
   images: {
-    // Assets are already pre-optimized .webp files.
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
   },
   turbopack: {
     rules: {

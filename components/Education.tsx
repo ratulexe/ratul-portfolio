@@ -1,19 +1,20 @@
 import { education } from "@/data/portfolio";
 import { metaIcons } from "./icons";
 import MetaChip from "./MetaChip";
-import Reveal from "./Reveal";
+import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
 const markers = ["bg-sun", "bg-punch", "bg-mint"];
 
 export default function Education() {
   return (
-    <Reveal id="education">
+    <Section id="education">
       <SectionHeading eyebrow="Education" title="Where I learn." />
       <ol className="mt-9 grid gap-6.5 border-l-6 border-ink pl-6 md:pl-8">
         {education.map((item, i) => (
           <li
             key={item.title}
+            data-anim="slam"
             className="brutal-lift relative border-3 border-ink bg-card p-6 shadow-brutal"
           >
             <span
@@ -34,6 +35,6 @@ export default function Education() {
           </li>
         ))}
       </ol>
-    </Reveal>
+    </Section>
   );
 }
