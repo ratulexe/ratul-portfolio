@@ -77,9 +77,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <head>
+        {/* A plain inline script in <head> is the only option that runs before first paint
+            (next/script "beforeInteractive" is queued until Next.js loads → white flash). */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      {/* suppressHydrationWarning on <body>: extensions (e.g. ColorZilla) add attributes to it. */}
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

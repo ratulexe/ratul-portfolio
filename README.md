@@ -76,5 +76,5 @@ To check it works, hover the **Live** badge on the GitHub card: it says *"Fetche
 ## Contact
 
 - **Email:** ratulk.cse.24.jisu@gmail.com
-- **LinkedIn:** [Ratul Kole](https://www.linkedin.com/in/ratul-kole-0aaab1311/)
+- **LinkedIn:** [Ratul Kole](https://www.linkedin.com/in/ratul13/)
 - **GitHub:** [@ratulexe](https://github.com/ratulexe)
