@@ -192,6 +192,8 @@ export type Project = {
   tags: string[];
   repo: string;
   live: string;
+  /** Real screenshot of the live demo (1200 × 750 .webp in public/assets/projects). */
+  image: string;
   color: string;
 };
 
@@ -203,6 +205,7 @@ export const projects: Project[] = [
     tags: ["React", "Firebase", "Tailwind CSS"],
     repo: "https://github.com/ratulexe/aashray-ai",
     live: "https://aashray-ai.vercel.app",
+    image: "/assets/projects/aashray.webp",
     color: "bg-tangerine text-coal",
   },
   {
@@ -212,6 +215,7 @@ export const projects: Project[] = [
     tags: ["Node.js", "Express.js", "Firebase"],
     repo: "https://github.com/ratulexe/medminder",
     live: "https://medminder-s4.web.app/",
+    image: "/assets/projects/medminder.webp",
     color: "bg-sun text-coal",
   },
   {
@@ -221,6 +225,7 @@ export const projects: Project[] = [
     tags: ["Weather App", "API", "JavaScript"],
     repo: "https://github.com/ratulexe/CloudMate",
     live: "https://ratulexe.github.io/CloudMate/",
+    image: "/assets/projects/cloudmate.webp",
     color: "bg-punch text-coal",
   },
   {
@@ -230,6 +235,7 @@ export const projects: Project[] = [
     tags: ["Quiz App", "Aptitude", "Practice"],
     repo: "https://github.com/ratulexe/AptitudeArena",
     live: "https://ratulexe.github.io/AptitudeArena/",
+    image: "/assets/projects/aptitude.webp",
     color: "bg-mint text-coal",
   },
 ];

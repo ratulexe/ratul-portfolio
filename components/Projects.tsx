@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { projects } from "@/data/portfolio";
 import { ExternalIcon, GitHubIcon } from "./icons";
 import Section from "./Section";
@@ -19,14 +20,36 @@ export default function Projects() {
             data-anim="slam"
             className={`brutal-lift relative flex min-h-75 flex-col justify-between border-3 border-ink p-6 shadow-brutal *:on-bright ${p.color}`}
           >
-            <span
-              aria-hidden
-              className="absolute top-2.5 right-4 font-display text-[3.4rem] leading-none opacity-[0.12]"
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
             <div>
-              <h3 className="font-display text-[1.6rem] leading-tight uppercase">{p.name}</h3>
+              {/* Real screenshot in a mini brutalist browser window — opens the live demo */}
+              <a
+                href={p.live}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open the ${p.name} live demo`}
+                className="brutal-sink mb-5 block overflow-hidden border-3 border-ink bg-card shadow-brutal-sm"
+              >
+                <span aria-hidden className="flex items-center gap-1.5 border-b-3 border-ink bg-card px-2.5 py-1.5">
+                  <span className="size-2.5 border-2 border-ink bg-punch" />
+                  <span className="size-2.5 border-2 border-ink bg-sun" />
+                  <span className="size-2.5 border-2 border-ink bg-mint" />
+                  <span className="ml-2 truncate text-[0.7rem] font-bold">{new URL(p.live).host}</span>
+                </span>
+                <Image
+                  src={p.image}
+                  alt={`Screenshot of the ${p.name} live demo`}
+                  width={1200}
+                  height={750}
+                  sizes="(min-width: 1180px) 520px, (min-width: 768px) 45vw, 90vw"
+                  className="block h-auto w-full"
+                />
+              </a>
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-display text-[1.6rem] leading-tight uppercase">{p.name}</h3>
+                <span aria-hidden className="font-display text-[3.4rem] leading-none opacity-[0.12]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
               <p className="mt-3 text-[0.91rem]">{p.description}</p>
               <ul className="mt-4.5 flex flex-wrap gap-2" aria-label="Tech used">
                 {p.tags.map((t) => (
