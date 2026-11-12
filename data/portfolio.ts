@@ -4,7 +4,7 @@ export const profile = {
   name: "Ratul Kole",
   role: "Computer Science & Engineering student",
   intro:
-    "A Computer Science & Engineering student interested in software development, full-stack web development, and Data Structures & Algorithms.",
+    "A Computer Science & Engineering student and technophile who loves building for the web, trying out new tech, and sharpening problem-solving with Data Structures & Algorithms.",
   degree: "B.Tech in Computer Science & Engineering",
   university: "JIS University",
   city: "Kolkata",
@@ -105,7 +105,11 @@ export type Achievement = { title: string; year: string; detail: string; href?: 
 
 export const achievements: Achievement[] = [];
 
-export type Skill = { name: string; logo: string };
+/** Logo for skills without an image file (see components/SkillLogo.tsx). */
+export type SkillIcon = "sql" | "mysql" | "tailwind" | "api" | "githubcli";
+
+/** A skill shows either a logo image or a drawn icon. */
+export type Skill = { name: string; logo?: string; icon?: SkillIcon };
 
 export type SkillGroup = {
   title: string;
@@ -125,6 +129,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "C", logo: logo("C.webp") },
       { name: "C++", logo: logo("cpp.webp") },
       { name: "JavaScript", logo: logo("JavaScript.webp") },
+      { name: "SQL", icon: "sql" },
     ],
   },
   {
@@ -134,6 +139,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "HTML5", logo: logo("HTML5.webp") },
       { name: "CSS", logo: logo("CSS3.svg") },
       { name: "Bootstrap", logo: logo("Bootstrap.webp") },
+      { name: "Tailwind CSS", icon: "tailwind" },
     ],
   },
   {
@@ -142,6 +148,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Node.js", logo: logo("Node.js.webp") },
       { name: "Express.js", logo: logo("Express.webp") },
+      { name: "REST APIs", icon: "api" },
     ],
   },
   {
@@ -150,6 +157,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "MongoDB", logo: logo("MongoDB.webp") },
       { name: "Firebase", logo: logo("Firebase.webp") },
+      { name: "MySQL", icon: "mysql" },
     ],
   },
   {
@@ -159,6 +167,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "VS Code", logo: logo("Visual Studio Code (VS Code).webp") },
       { name: "Git", logo: logo("Git.webp") },
       { name: "GitHub", logo: logo("GitHub.webp") },
+      { name: "GitHub CLI", icon: "githubcli" },
       { name: "Gemini", logo: logo("google-gemini-icon.webp") },
       // Transparent background (renamed from chatgpt-icon so image caches can't serve the old white version).
       { name: "ChatGPT", logo: logo("chatgpt-logo.webp") },

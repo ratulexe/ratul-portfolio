@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { concepts, skillGroups, type SkillGroup } from "@/data/portfolio";
+import SkillLogo from "./SkillLogo";
 import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
@@ -25,14 +26,18 @@ function SkillCard({ group }: { group: SkillGroup }) {
             <div
               className={`${box} grid place-items-center border-3 border-ink bg-cream shadow-brutal-sm transition-[translate,box-shadow,background-color] duration-100 group-hover:translate-0.75 group-hover:bg-sun group-hover:shadow-flat`}
             >
-              <Image
-                src={s.logo}
-                alt={`${s.name} logo`}
-                width={img}
-                height={img}
-                className="object-contain"
-                style={{ width: img, height: img }}
-              />
+              {s.logo ? (
+                <Image
+                  src={s.logo}
+                  alt={`${s.name} logo`}
+                  width={img}
+                  height={img}
+                  className="object-contain"
+                  style={{ width: img, height: img }}
+                />
+              ) : s.icon ? (
+                <SkillLogo icon={s.icon} size={img} />
+              ) : null}
             </div>
             <span className="mt-3 max-w-23.5 text-center text-[0.76rem] font-bold uppercase">
               {s.name}

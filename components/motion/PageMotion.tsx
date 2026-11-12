@@ -35,8 +35,9 @@ export default function PageMotion() {
         })
         .from(
           "[data-anim=drop]",
-          // Portrait fades in (opacity 0 → 1) — no movement.
-          { opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "opacity" },
+          // Portrait fades in — no movement. Starts at 15% (not 0) so browsers count it as
+          // painted immediately, which keeps the page-speed (LCP) score unaffected.
+          { opacity: 0.15, duration: 0.8, ease: "power2.out", clearProps: "opacity" },
           0,
         )
         .from(
