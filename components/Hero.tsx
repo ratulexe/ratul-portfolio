@@ -22,7 +22,7 @@ export default function Hero({ stats }: { stats: Stats }) {
       <div>
         <div className="mb-4.5 flex flex-wrap items-center gap-3">
           <p data-anim="sticker" className="inline-block border-3 border-ink bg-punch px-2.5 py-1 text-sm font-bold tracking-[0.08em] text-coal uppercase shadow-brutal-sm">
-            Student · Builder · Kolkata
+            Student · Technophile · Kolkata
           </p>
           {/* "Now" sticker — edit profile.nowLearning in data/portfolio.ts */}
           <p data-anim="sticker" className="inline-flex rotate-[-3deg] items-center gap-2 border-3 border-dashed border-ink bg-card px-2.5 py-1 text-xs font-bold uppercase shadow-brutal-sm">

@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Geist_Mono } from "next/font/google";
 import { profile, siteDescription, siteUrl } from "@/data/portfolio";
@@ -82,7 +83,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       {/* suppressHydrationWarning on <body>: extensions (e.g. ColorZilla) add attributes to it. */}
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        {/* Vercel Web Analytics — privacy-friendly visitor stats (no cookies). Only reports
+            on the deployed site once Analytics is enabled in the Vercel dashboard. */}
+        <Analytics />
+      </body>
     </html>
   );
 }
