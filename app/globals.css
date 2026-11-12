@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* `dark:` utilities apply when <html> has the .dark class (set by the theme toggle). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Neo-brutalist design tokens ---------- */
+@theme {
+  /* Theme-aware: flip in dark mode (see :root.dark below) */
+  --color-paper: #f5f0e1; /* page background */
+  --color-ink: #0a0a0a;   /* text, borders, shadows */
+  --color-card: #ffffff;  /* neutral surfaces */
+
+  /* Fixed: never flip */
+  --color-coal: #0a0a0a;  /* text on bright colours */
+  --color-cream: #f5f0e1;
+  --color-sun: #ffd23f;
+  --color-cobalt: #3a5bff;
+  --color-punch: #ff6fa8;
+  --color-mint: #2ee59d;
+  --color-tangerine: #ff7a2f;
+
+  --font-display: var(--font-archivo-black), "Arial Black", Impact, sans-serif;
+  --font-mono: var(--font-geist-mono), "Courier New", monospace;
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-typing: typing 0.9s steps(19, end), blink-caret 0.75s step-end infinite;
+  --animate-rise: rise 0.5s steps(6, end) 0.25s both;
+  --animate-nudge: nudge 1.4s steps(2, end) infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes typing {
+    from { width: 0; }
+  }
+  @keyframes blink-caret {
+    50% { border-right-color: transparent; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+  }
+  @keyframes nudge {
+    50% { translate: 0 -8px; }
+  }
+}
+
+/* Hard shadows. `inline` makes each utility use the ink colour of the element it's on,
+   so shadows follow dark mode and the `on-bright` override below. */
+@theme inline {
+  --shadow-brutal-sm: 3px 3px 0 var(--color-ink);
+  --shadow-brutal: 6px 6px 0 var(--color-ink);
+  --shadow-brutal-lg: 10px 10px 0 var(--color-ink);
+  --shadow-brutal-xl: 12px 12px 0 var(--color-ink);
+  --shadow-flat: 0 0 0 var(--color-ink);
+}
+
+/* ---------- Dark mode: black page, cream borders, same bright colours ---------- */
+:root.dark {
+  --color-paper: #121212;
+  --color-ink: #f5f0e1;
+  --color-card: #1e1e1e;
+  color-scheme: dark;
+}
+
+/* Content sitting on a bright colour (yellow/pink/green) keeps black ink in both themes. */
+@utility on-bright {
+  --color-ink: var(--color-coal);
+  --color-card: #ffffff;
+  color: var(--color-coal);
+}
+
+/* ---------- Reusable brutalist interactions ---------- */
+
+/* Card lifts toward the viewer on hover */
+@utility brutal-lift {
+  transition: translate 120ms ease, box-shadow 120ms ease;
+  &:hover {
+    translate: -4px -4px;
+    box-shadow: 10px 10px 0 var(--color-ink);
+  }
+}
+
+/* Button: lifts on hover, gets pushed flat into the page when pressed */
+@utility brutal-press {
+  transition: translate 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
+  &:hover {
+    translate: -4px -4px;
+    box-shadow: 10px 10px 0 var(--color-ink);
+  }
+  &:active {
+    translate: 6px 6px;
+    box-shadow: 0 0 0 var(--color-ink);
+  }
+}
+
+/* Small square button: sinks into the page on hover */
+@utility brutal-sink {
+  transition: translate 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
+  &:hover {
+    translate: 3px 3px;
+    box-shadow: 0 0 0 var(--color-ink);
+  }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* clip (not hidden) so the sticky header keeps working */
+    overflow-x: clip;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--color-ink) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 6%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background: var(--color-sun);
+    color: var(--color-coal);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-cobalt);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper);
+    border-left: 3px solid var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink);
+    border: 3px solid var(--color-paper);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-cobalt);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
