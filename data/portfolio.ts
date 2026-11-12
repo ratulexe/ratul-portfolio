@@ -197,6 +197,15 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Aashray AI",
+    description:
+      "AI-powered disaster evacuation platform that recommends shelters by location, capacity, safety and road conditions, with real-time occupancy tracking, reservation codes and an operator dashboard.",
+    tags: ["React", "Firebase", "Tailwind CSS"],
+    repo: "https://github.com/ratulexe/aashray-ai",
+    live: "https://aashray-ai.vercel.app",
+    color: "bg-tangerine text-coal",
+  },
+  {
     name: "MedMinder",
     description:
       "A medicine reminder system with authentication, scheduling, Firebase Firestore, and external medicine API integration.",

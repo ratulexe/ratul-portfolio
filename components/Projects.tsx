@@ -12,7 +12,7 @@ export default function Projects() {
   return (
     <Section id="projects">
       <SectionHeading eyebrow="Projects" title="Stuff I built." />
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2">
         {projects.map((p, i) => (
           <article
             key={p.name}
