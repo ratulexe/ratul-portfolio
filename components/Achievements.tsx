@@ -1,7 +1,7 @@
 import { achievements, profile, projects } from "@/data/portfolio";
 import type { ContributionDay, Stats } from "@/lib/stats";
 import { ExternalIcon } from "./icons";
-import Reveal from "./Reveal";
+import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
 // min-w-0: lets the wide contribution calendar scroll inside its card instead of
@@ -67,17 +67,17 @@ export default function Achievements({ stats }: { stats: Stats }) {
   ];
 
   return (
-    <Reveal id="achievements">
-      <SectionHeading eyebrow="Stats" title="Proof, not promises." />
+    <Section id="achievements">
+      <SectionHeading eyebrow="Stats" title="The numbers." />
 
       <div className="grid gap-6 lg:grid-cols-3">
         {/* LeetCode */}
-        <article className={card}>
+        <article data-anim="slam" className={card}>
           <div className="flex items-center justify-between gap-3">
             <h3 className="font-display text-lg uppercase">LeetCode</h3>
             <LiveBadge live={live.leetcode} />
           </div>
-          <p className={`${bigNumber} mt-5`}>{leetcode.total}</p>
+          <p data-count={String(leetcode.total)} className={`${bigNumber} mt-5`}>{leetcode.total}</p>
           <p className={label}>Problems solved</p>
 
           {/* Stacked difficulty bar */}
@@ -112,7 +112,7 @@ export default function Achievements({ stats }: { stats: Stats }) {
         </article>
 
         {/* GitHub contributions */}
-        <article className={`${card} lg:col-span-2`}>
+        <article data-anim="slam" className={`${card} lg:col-span-2`}>
           <div className="flex items-center justify-between gap-3">
             <h3 className="font-display text-lg uppercase">GitHub</h3>
             <LiveBadge
@@ -122,11 +122,11 @@ export default function Achievements({ stats }: { stats: Stats }) {
           </div>
           <div className="mt-5 flex flex-wrap items-end gap-x-10 gap-y-4">
             <div>
-              <p className={bigNumber}>{github.contributionsLastYear}</p>
+              <p data-count={String(github.contributionsLastYear)} className={bigNumber}>{github.contributionsLastYear}</p>
               <p className={label}>Contributions · last 12 months</p>
             </div>
             <div>
-              <p className={bigNumber}>{github.repos}</p>
+              <p data-count={String(github.repos)} className={bigNumber}>{github.repos}</p>
               <p className={label}>Public repos</p>
             </div>
           </div>
@@ -168,16 +168,16 @@ export default function Achievements({ stats }: { stats: Stats }) {
         </article>
 
         {/* Quick facts */}
-        <article className={`${card} bg-sun text-coal`}>
-          <p className={bigNumber}>{projects.length}</p>
+        <article data-anim="slam" className={`${card} bg-sun text-coal`}>
+          <p data-count={String(projects.length)} className={bigNumber}>{projects.length}</p>
           <p className={label}>Live projects shipped</p>
         </article>
-        <article className={`${card} bg-punch text-coal`}>
-          <p className={bigNumber}>{leetcode.medium + leetcode.hard}</p>
+        <article data-anim="slam" className={`${card} bg-punch text-coal`}>
+          <p data-count={String(leetcode.medium + leetcode.hard)} className={bigNumber}>{leetcode.medium + leetcode.hard}</p>
           <p className={label}>Medium + Hard problems cracked</p>
         </article>
-        <article className={`${card} bg-mint text-coal`}>
-          <p className={bigNumber}>{profile.cgpa}</p>
+        <article data-anim="slam" className={`${card} bg-mint text-coal`}>
+          <p data-count={String(profile.cgpa)} className={bigNumber}>{profile.cgpa}</p>
           <p className={label}>CGPA at JIS University</p>
         </article>
       </div>
@@ -185,7 +185,7 @@ export default function Achievements({ stats }: { stats: Stats }) {
       {achievements.length > 0 && (
         <ol className="mt-8 grid gap-4">
           {achievements.map((a) => (
-            <li key={a.title} className={`${card} grid gap-1 sm:grid-cols-[auto_1fr] sm:gap-5`}>
+            <li key={a.title} data-anim="slam" className={`${card} grid gap-1 sm:grid-cols-[auto_1fr] sm:gap-5`}>
               <span className="self-start bg-cobalt px-2 py-0.5 text-sm font-bold text-white">{a.year}</span>
               <div>
                 <h3 className="font-display text-lg uppercase">
@@ -207,6 +207,6 @@ export default function Achievements({ stats }: { stats: Stats }) {
       <p className="mt-6 text-xs font-bold uppercase opacity-70">
         Stats pulled live from GitHub &amp; LeetCode · refreshed every 6 hours
       </p>
-    </Reveal>
+    </Section>
   );
 }

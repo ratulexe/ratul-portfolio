@@ -23,22 +23,15 @@
   --font-mono: var(--font-geist-mono), "Courier New", monospace;
 
   --animate-marquee: marquee 28s linear infinite;
-  --animate-typing: typing 0.9s steps(19, end), blink-caret 0.75s step-end infinite;
-  --animate-rise: rise 0.5s steps(6, end) 0.25s both;
+  --animate-caret: blink-caret 0.75s step-end infinite;
   --animate-nudge: nudge 1.4s steps(2, end) infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
-  @keyframes typing {
-    from { width: 0; }
-  }
   @keyframes blink-caret {
     50% { border-right-color: transparent; }
-  }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(16px); }
   }
   @keyframes nudge {
     50% { translate: 0 -8px; }

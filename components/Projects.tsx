@@ -1,6 +1,6 @@
 import { projects } from "@/data/portfolio";
 import { ExternalIcon, GitHubIcon } from "./icons";
-import Reveal from "./Reveal";
+import Section from "./Section";
 import SectionHeading from "./SectionHeading";
 
 const iconLink =
@@ -10,12 +10,13 @@ const iconLink =
 
 export default function Projects() {
   return (
-    <Reveal id="projects">
+    <Section id="projects">
       <SectionHeading eyebrow="Projects" title="Stuff I built." />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (
           <article
             key={p.name}
+            data-anim="slam"
             className={`brutal-lift relative flex min-h-75 flex-col justify-between border-3 border-ink p-6 shadow-brutal *:on-bright ${p.color}`}
           >
             <span
@@ -63,6 +64,6 @@ export default function Projects() {
           </article>
         ))}
       </div>
-    </Reveal>
+    </Section>
   );
 }

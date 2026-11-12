@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { profile } from "@/data/portfolio";
 import type { Stats } from "@/lib/stats";
 import { ArrowDownIcon, AwardIcon, DownloadIcon, PinIcon, SchoolIcon } from "./icons";
+import HeroPortrait from "./HeroPortrait";
 import MetaChip from "./MetaChip";
 
 const button =
@@ -17,15 +17,15 @@ export default function Hero({ stats }: { stats: Stats }) {
   return (
     <section
       id="home"
-      className="relative mx-auto grid max-w-295 items-center gap-14 px-5 pt-16 pb-18 sm:px-6 md:min-h-[calc(100vh-72px)] md:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] md:py-24"
+      className="relative mx-auto grid max-w-295 items-center gap-14 overflow-x-clip px-5 pt-16 pb-18 sm:px-6 md:min-h-[calc(100vh-72px)] md:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] md:py-24"
     >
       <div>
         <div className="mb-4.5 flex flex-wrap items-center gap-3">
-          <p className="inline-block border-3 border-ink bg-punch px-2.5 py-1 text-sm font-bold tracking-[0.08em] text-coal uppercase shadow-brutal-sm">
+          <p data-anim="sticker" className="inline-block border-3 border-ink bg-punch px-2.5 py-1 text-sm font-bold tracking-[0.08em] text-coal uppercase shadow-brutal-sm">
             Student · Builder · Kolkata
           </p>
           {/* "Now" sticker — edit profile.nowLearning in data/portfolio.ts */}
-          <p className="inline-flex rotate-[-3deg] items-center gap-2 border-3 border-dashed border-ink bg-card px-2.5 py-1 text-xs font-bold uppercase shadow-brutal-sm">
+          <p data-anim="sticker" className="inline-flex rotate-[-3deg] items-center gap-2 border-3 border-dashed border-ink bg-card px-2.5 py-1 text-xs font-bold uppercase shadow-brutal-sm">
             <span aria-hidden className="size-2.5 animate-pulse rounded-full bg-mint ring-2 ring-ink" />
             Now learning: <span className="bg-sun px-1 text-coal">{profile.nowLearning}</span>
           </p>
@@ -35,13 +35,12 @@ export default function Hero({ stats }: { stats: Stats }) {
           Hello
         </h1>
 
-        <p
-          className="mt-6.5 inline-block w-[calc(18.5ch+1.6em)] animate-typing overflow-hidden border-3 border-r-[0.5em] border-ink bg-card px-2.5 py-1.5 text-[clamp(0.88rem,1.8vw,1.1rem)] font-bold tracking-wider whitespace-nowrap shadow-brutal-sm"
-        >
+        {/* Visible immediately (no typing reveal) — only the cursor blinks. */}
+        <p className="mt-6.5 inline-block animate-caret border-3 border-r-[0.5em] border-ink bg-card px-2.5 py-1.5 text-[clamp(0.88rem,1.8vw,1.1rem)] font-bold tracking-wider whitespace-nowrap shadow-brutal-sm">
           - I&apos;m {profile.name},
         </p>
 
-        <p className="mt-6.5 max-w-190 animate-rise text-[clamp(1.05rem,2vw,1.35rem)] text-ink/80">
+        <p className="mt-6.5 max-w-190 text-[clamp(1.05rem,2vw,1.35rem)] text-ink/80">
           {profile.intro}
         </p>
 
@@ -66,13 +65,13 @@ export default function Hero({ stats }: { stats: Stats }) {
           {highlights.map((s) => {
             const body = (
               <>
-                <strong className="font-display text-2xl leading-none font-normal">{s.value}</strong>
+                <strong data-count={String(s.value)} className="font-display text-2xl leading-none font-normal tabular-nums">{s.value}</strong>
                 {s.label}
               </>
             );
             const chip = `${s.color} inline-flex items-baseline gap-2 border-3 border-ink px-3.5 py-2.5 text-[0.8rem] font-bold uppercase shadow-brutal-sm`;
             return (
-              <li key={s.label}>
+              <li key={s.label} data-anim="chip">
                 {s.href ? (
                   <a href={s.href} target="_blank" rel="noreferrer" className={`${chip} brutal-sink`}>
                     {body}
@@ -87,19 +86,7 @@ export default function Hero({ stats }: { stats: Stats }) {
       </div>
 
       <div className="grid justify-items-center">
-        <div className="group relative aspect-square w-[min(300px,92%)] rotate-2 overflow-hidden border-3 border-ink bg-cobalt shadow-brutal-xl transition-[rotate,translate,box-shadow] duration-150 hover:translate-1.5 hover:rotate-0 hover:shadow-[4px_4px_0_var(--color-ink)] md:w-[min(360px,100%)]">
-          <Image
-            src={profile.portrait}
-            alt={`Portrait of ${profile.name}`}
-            width={1086}
-            height={1086}
-            preload
-            className="absolute top-1/2 left-1/2 size-full max-w-none -translate-x-1/2 -translate-y-1/2 md:-translate-y-[39%] object-cover object-top mix-blend-multiply grayscale contrast-120 md:size-[122%]"
-          />
-          <span className="absolute bottom-3.5 left-3.5 z-10 border-3 border-ink bg-sun px-2 py-1 text-[0.68rem] font-bold tracking-wider text-coal">
-            AVAILABLE FOR INTERNSHIP
-          </span>
-        </div>
+        <HeroPortrait />
 
         <div className="mt-8.5 w-full max-w-97.5 border-3 border-ink bg-card p-5 shadow-brutal">
           <span className="mb-3 inline-block border-2 border-ink bg-mint px-2 py-0.5 text-[0.7rem] font-bold tracking-wider text-coal uppercase">

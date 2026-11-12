@@ -13,6 +13,7 @@ export default function SectionHeading({
         {eyebrow}
       </p>
       <h2
+        data-anim="heading"
         className={`max-w-205 font-display uppercase ${
           big
             ? "text-[clamp(2.6rem,8vw,6rem)] leading-[0.95]"

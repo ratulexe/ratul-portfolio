@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const title = `${profile.name} — Full-Stack Developer & CSE Student`;
+const title = `${profile.name} — Web Developer & CSE Student`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   keywords: [
     profile.name,
     "portfolio",
-    "full-stack developer",
+    "web developer",
     "Node.js",
     "Express.js",
     "Firebase",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "Kolkata",
   ],
   alternates: { canonical: "/" },
-  icons: { icon: "/assets/favicon.png" },
+  // Favicon + Apple icon are generated from app/icon.tsx and app/apple-icon.tsx.
   // The share image itself comes from app/opengraph-image.tsx (added automatically).
   openGraph: {
     type: "profile",

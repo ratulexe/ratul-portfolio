@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
+import PageMotion from "@/components/motion/PageMotion";
+import PersonJsonLd from "@/components/PersonJsonLd";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import { getStats } from "@/lib/stats";
@@ -20,6 +22,8 @@ export default async function Home() {
 
   return (
     <>
+      <PersonJsonLd />
+      <PageMotion />
       <Header />
       <main>
         <Hero stats={stats} />

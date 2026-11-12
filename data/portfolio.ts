@@ -11,7 +11,7 @@ export const profile = {
   cgpa: "8.4",
   email: "ratulk.cse.24.jisu@gmail.com",
   resume: "/assets/resume.pdf",
-  portrait: "/assets/ratul-portrait-transparent.webp",
+  portrait: "/assets/ratul-cutout-2026.webp",
   /** Shown as the sticker in the hero — update it whenever your focus changes. */
   nowLearning: "DSA in C++",
   handles: {
@@ -28,7 +28,7 @@ export const profile = {
 export const siteUrl = "https://ratulkole.vercel.app";
 
 export const siteDescription =
-  "Ratul Kole — B.Tech CSE student at JIS University, Kolkata. Full-stack developer (Node.js, Express, Firebase) solving DSA in C++. Projects, live coding stats and résumé.";
+  "Ratul Kole — B.Tech CSE student at JIS University, Kolkata. Web developer (Node.js, Express, Firebase) solving DSA in C++. Projects, live coding stats and résumé.";
 
 export const navLinks = [
   { href: "#about", label: "About" },
@@ -40,7 +40,7 @@ export const navLinks = [
 ];
 
 export const marqueeItems = [
-  "Full-Stack Dev",
+  "Web Developer",
   "DSA",
   "Node.js",
   "JavaScript",
@@ -160,7 +160,8 @@ export const skillGroups: SkillGroup[] = [
       { name: "Git", logo: logo("Git.webp") },
       { name: "GitHub", logo: logo("GitHub.webp") },
       { name: "Gemini", logo: logo("google-gemini-icon.webp") },
-      { name: "ChatGPT", logo: logo("chatgpt-icon.webp") },
+      // Transparent background (renamed from chatgpt-icon so image caches can't serve the old white version).
+      { name: "ChatGPT", logo: logo("chatgpt-logo.webp") },
     ],
   },
 ];

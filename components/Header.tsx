@@ -15,7 +15,8 @@ export default function Header() {
       frame = 0;
       const { scrollY } = window;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(max > 0 ? (scrollY / max) * 100 : 0);
+      // Clamped: mobile "bounce" scrolling can briefly report values outside 0–100.
+      setProgress(max > 0 ? Math.min(100, Math.max(0, (scrollY / max) * 100)) : 0);
 
       const sections = document.querySelectorAll<HTMLElement>("main section[id]");
       let current = "home";
@@ -39,11 +40,19 @@ export default function Header() {
 
   return (
     <>
-      <div
-        className="fixed top-0 left-0 z-50 h-1.5 bg-cobalt"
-        style={{ width: `${progress}%` }}
-        aria-hidden
-      />
+      {/* Scroll progress: blue bar + a % badge riding at its tip (decorative, hidden from screen readers) */}
+      <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-50">
+        <div className="h-1.5 bg-cobalt" style={{ width: `${progress}%` }} />
+        {progress >= 1 && (
+          <span
+            className="absolute top-0 -translate-x-full border-2 border-t-0 border-coal bg-cobalt px-1.5 font-mono text-[0.65rem] leading-3.5 font-bold text-white tabular-nums shadow-[2px_2px_0_var(--color-coal)]"
+            // Never slides off the left edge at small values; ends flush with the bar's tip.
+            style={{ left: `max(2.75rem, ${progress}%)` }}
+          >
+            {Math.round(progress)}%
+          </span>
+        )}
+      </div>
       {/* on-bright: the yellow bar keeps black ink in both themes */}
       <header className="on-bright sticky top-0 z-40 border-b-3 border-ink bg-sun dark:border-cream">
         <nav className="mx-auto flex min-h-18 max-w-295 items-center justify-between px-4 sm:px-6">
