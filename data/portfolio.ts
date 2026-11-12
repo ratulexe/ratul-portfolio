@@ -233,7 +233,7 @@ export const contacts: ContactLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ratul-kole-0aaab1311/",
+    href: "https://www.linkedin.com/in/ratul13/",
     icon: "linkedin",
     color: "bg-cobalt text-white",
     external: true,
